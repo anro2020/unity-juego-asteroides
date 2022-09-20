@@ -42,14 +42,37 @@ public class NaveScript : MonoBehaviour
             // primer atributo, es el objeto que quiero instanciar)
             // segundo parametro, es para indicarle la posicion del objeto instanciado 
             // y el tercero, es una propiedad para la rotacion
-            Vector3 pos = transform.position;
+            //Vector3 pos = transform.position;
             // for (var i = 0; i < 3; i++)
             // {
             // }
-                GameObject skamehameha = Instantiate(spawn_kamehameha, pos, Quaternion.identity);
-                // pos = pos.y = -1;
-                // GameObject skamehameha = Instantiate(spawn_kamehameha, transform.position, Quaternion.identity);
-                // Thread.Sleep(1000);
+           float angulo = Mathf.Round(transform.rotation.eulerAngles.z);
+
+           if (angulo >= 0 && angulo <= 90)
+           {
+                float num1 = (angulo * 100) / 90;
+
+                //Eje de y
+                float num2 = (num1 * 1) / 100;
+                
+                //Eje de x
+                float num3 = 1 - num2; 
+
+                PlayerPrefs.SetFloat("num2", num2);
+                PlayerPrefs.SetFloat("num3", num3);
+           }
+
+           GameObject skamehameha = Instantiate(spawn_kamehameha, 
+                transform.position, Quaternion.identity);
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Rotate(Vector3.back);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Angulo: " + transform.rotation.eulerAngles.z);
         }
 
     }

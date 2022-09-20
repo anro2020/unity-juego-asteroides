@@ -24,7 +24,8 @@ public class AsteroideScript : MonoBehaviour
         transform.Rotate(Vector3.back);
    }
 
-   private void FixedUpdate() {
+   private void FixedUpdate() 
+   {
       GetComponent<Rigidbody2D>().position += velocity;
    }
 
@@ -45,10 +46,6 @@ public class AsteroideScript : MonoBehaviour
                     break;
             }
       }
-      // Debug.Log($"hp: {hp}");
-      /*if (hp == 0) {
-         Destroy(gameObject);
-      }*/
    }
 
    private void OnBecameInvisible() {
